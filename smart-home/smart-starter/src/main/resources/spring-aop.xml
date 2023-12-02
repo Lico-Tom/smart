@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-lazy-init="false">
+    <!--***************** 应用本文件的模块必须依赖： spring-boot-starter-aop ******-->
+
+
+    <!-- Spring默认不支持@Aspect风格的切面声明，通过如下配置开启@Aspect支持 -->
+    <aop:aspectj-autoproxy expose-proxy="true" />
+
+    <!-- 统一事务配置规则 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 查询类方法readonly=true -->
+            <tx:method name="query*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
+            <tx:method name="select*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
+            <tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
+            <tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
+            <tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
+
+            <!-- 更新类方法readonly=false -->
+            <tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="lock*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="unLock*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="change*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="reset*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="recover*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
+
+            <!-- 其他方法readonly=true -->
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config proxy-target-class="true">
+        <!-- 全局切入点：service包及子包下所有以ServiceImpl结尾的类的方法 -->
+        <aop:pointcut id="transaction_log_exceptionPointCut" expression="execution(public * com.smart.*.service..*(..))"/>
+
+        <!-- 织入全局事务 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="transaction_log_exceptionPointCut" order="2" />
+
+         <!-- 织入全局日志 -->
+ <!--        <aop:aspect ref="logAspect" order="1">
+             &lt;!&ndash; 全局统一日志 &ndash;&gt;
+             <aop:around method="doAround" pointcut-ref="transaction_log_exceptionPointCut"/>
+             &lt;!&ndash; 全局统一异常 &ndash;&gt;
+             <aop:after-throwing method="doAfterThrowing" pointcut-ref="transaction_log_exceptionPointCut" throwing="ex"/>
+         </aop:aspect>-->
+
+    </aop:config>
+
+</beans>

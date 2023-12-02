@@ -1,0 +1,6 @@
+spring:
+  mail:
+    host:
+    username:
+    password:
+    default-encoding: UTF-8

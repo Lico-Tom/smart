@@ -1,0 +1,36 @@
+server:
+  port: 9091
+  #ssl:
+  #  enabled: true
+  #  key-store: classpath:oauth2.jks
+  #  key-alias: oauth2
+  #  key-store-type: JKS
+  #  key-store-password: 123456
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+  flyway:
+    locations: classpath:mysql
+    enabled: true
+    encoding: UTF-8
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+    validate-on-migrate: true
+    baseline-on-migrate: true
+  profiles:
+    include: base-path
+    # 适配多个yml配置文件，多个配置文件以‘,’分割
+    active: ${DEPLOYMENT_ENVIRONMENT:prod}
+logging:
+  config: classpath:log4j2.yml
+mybatis-plus:
+  global-config:
+    banner: false

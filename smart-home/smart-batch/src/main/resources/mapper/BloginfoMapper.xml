@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.batch.mapper.BloginfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.batch.domain.Bloginfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="blogauthor" column="blogAuthor" jdbcType="VARCHAR"/>
+            <result property="blogurl" column="blogUrl" jdbcType="VARCHAR"/>
+            <result property="blogtitle" column="blogTitle" jdbcType="VARCHAR"/>
+            <result property="blogitem" column="blogItem" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,blogAuthor,blogUrl,
+        blogTitle,blogItem
+    </sql>
+</mapper>
