@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.security.mapper.ResourceMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.security.domain.Resource">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="categoryId" column="category_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,name,
+        url,description,category_id
+    </sql>
+    <select id="listResourceByRoleId" resultType="com.smart.security.domain.Resource"></select>
+    <select id="getResourceList" resultType="com.smart.security.domain.Resource">
+        SELECT
+            ur.id id,
+            ur.create_time createTime,
+            ur.`name` `name`,
+            ur.url url,
+            ur.description description,
+            ur.category_id categoryId
+        FROM
+            t_user_role_relation ar
+                LEFT JOIN t_role r ON ar.role_id = r.id
+                LEFT JOIN t_role_resource_relation rrr ON r.id = rrr.role_id
+                LEFT JOIN t_resource ur ON ur.id = rrr.resource_id
+        WHERE
+            ar.admin_id = #{adminId}
+          AND ur.id IS NOT NULL
+        GROUP BY
+            ur.id
+    </select>
+</mapper>

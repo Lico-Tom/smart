@@ -66,6 +66,12 @@
             <artifactId>flyway-mysql</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>smart-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -80,7 +86,7 @@
                             <classpathPrefix>lib/</classpathPrefix>
                             <useUniqueVersions>false</useUniqueVersions>
                             <mainClass>
-                                com.smart.admin.SmartStarterApplication
+                                com.smart.starter.SmartStarterApplication
                             </mainClass>
                         </manifest>
                     </archive>
