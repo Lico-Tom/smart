@@ -2,6 +2,7 @@ package com.smart.security.service;
 
 import com.smart.security.domain.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,4 +18,24 @@ public interface RoleService extends IService<Role> {
     List<Role> list(String keyword, Integer pageSize, Integer pageNum);
 
     boolean updateStatusById(Long id, Integer status);
+
+    /**
+     * 获取用户对应角色
+     *
+     * @param userId user id
+     * @return List<Role>
+     */
+    List<Role> getRoleList(Long userId);
+
+
+    /**
+     * 修改用户角色关系
+     *
+     * @param userId
+     * @param roleIds
+     * @return boolean 是否更新成功
+     */
+    @Transactional(rollbackForClassName = "updateRollback()")
+    boolean updateRole(Long userId, List<Long> roleIds);
+
 }

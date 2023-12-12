@@ -75,4 +75,20 @@ public class RoleController {
         return new ResponseEntity<>(isUpdate ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
     }
 
+
+    @Operation(description = "给用户分配角色")
+    @PostMapping(value = "/role/update")
+    public ResponseEntity<Void> updateRole(@RequestParam("userId") Long userId,
+                                           @RequestParam("roleIds") List<Long> roleIds) {
+        boolean isUpdate = roleService.updateRole(userId, roleIds);
+        return new ResponseEntity<>(isUpdate ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+    }
+
+    @Operation(description = "获取指定用户的角色")
+    @GetMapping(value = "/role/{userId}")
+    public ResponseEntity<List<Role>> getRoleList(@PathVariable Long userId) {
+        List<Role> roleList = roleService.getRoleList(userId);
+        return new ResponseEntity<>(roleList, HttpStatus.OK);
+    }
+
 }

@@ -3,7 +3,6 @@ package com.smart.starter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.retry.annotation.EnableRetry;
@@ -18,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.smart.*.mapper")
 @ImportResource(value = "classpath:spring-aop.xml")
 @ConfigurationPropertiesScan(basePackages = "com.smart.*.config")
-@SpringBootApplication(scanBasePackages = "com.smart", exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication(scanBasePackages = "com.smart")
 public class SmartStarterApplication {
 
     public static void main(String[] args) {

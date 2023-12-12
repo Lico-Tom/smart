@@ -47,4 +47,5 @@ secure:
       - /v1/smart/user/login
       - /v1/smart/user/register
       - /v1/smart/user/info
-      - /v1/smart/user/logout
+      - /v1/smart/user/*
+      - /v1/smart/role/listAll

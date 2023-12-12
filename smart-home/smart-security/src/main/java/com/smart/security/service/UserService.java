@@ -1,12 +1,11 @@
 package com.smart.security.service;
 
-import com.smart.security.domain.Role;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.smart.security.domain.UpdatePasswordParam;
 import com.smart.security.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.smart.security.domain.UserParam;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -50,14 +49,6 @@ public interface UserService extends IService<User> {
     User getAdminByUsername(String username);
 
     /**
-     * 获取用户对应角色
-     *
-     * @param id rule id
-     * @return List<Role>
-     */
-    List<Role> getRoleList(Long id);
-
-    /**
      * 根据用户名或昵称分页查询用户
      *
      * @param keyword
@@ -66,6 +57,15 @@ public interface UserService extends IService<User> {
      * @return
      */
     List<User> list(String keyword, int pageSize, int pageNum);
+
+    /**
+     * 分页查询用户
+     *
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    IPage<User> list(int currentPage, int pageSize, User user);
 
     /**
      * 修改密码
@@ -82,16 +82,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     UserDetails loadUserByUsername(String username);
-
-    /**
-     * 修改用户角色关系
-     *
-     * @param userId
-     * @param roleIds
-     * @return boolean 是否更新成功
-     */
-    @Transactional(rollbackForClassName = "updateRollback()")
-    boolean updateRole(Long userId, List<Long> roleIds);
 
     /**
      * 获取缓存服务

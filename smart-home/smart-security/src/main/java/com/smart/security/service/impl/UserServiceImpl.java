@@ -1,13 +1,13 @@
 package com.smart.security.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.smart.core.utils.ApplicationContextUtil;
 import com.smart.core.utils.JwtTokenUtil;
 import com.smart.security.UpdatePasswordStatus;
 import com.smart.security.domain.Resource;
-import com.smart.security.domain.Role;
 import com.smart.security.domain.ShUserDetails;
 import com.smart.security.domain.UpdatePasswordParam;
 import com.smart.security.domain.User;
@@ -16,6 +16,7 @@ import com.smart.security.service.ResourceService;
 import com.smart.security.service.UserCacheService;
 import com.smart.security.service.UserService;
 import com.smart.security.mapper.UserMapper;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +26,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,11 +96,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public List<Role> getRoleList(Long id) {
-        return null;
-    }
-
-    @Override
     public List<User> list(String keyword, int pageSize, int pageNum) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("username", keyword);
@@ -108,6 +103,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         page.setSize(pageSize);
         page.setCurrent(pageNum);
         return list(page, queryWrapper);
+    }
+
+    @Override
+    public IPage<User> list(int currentPage, int pageSize, User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(user.getId() != null, "id", user.getId());
+        queryWrapper.eq(Strings.isNotBlank(user.getUsername()), "username", user.getUsername());
+        queryWrapper.eq(Strings.isNotBlank(user.getEmail()), "email", user.getEmail());
+        queryWrapper.eq(Strings.isNotEmpty(user.getNickName()), "nick_name", user.getNickName());
+        queryWrapper.eq(Strings.isNotEmpty(user.getNote()), "note", user.getNote());
+        queryWrapper.eq(user.getStatus() != -1, "status", user.getStatus());
+        IPage<User> page = new Page<>(currentPage, pageSize, count(queryWrapper));
+        queryWrapper.last("LIMIT " + pageSize + " OFFSET " + (pageSize * (currentPage - 1)));
+        return userMapper.selectPage(page, queryWrapper);
     }
 
     @Override
@@ -137,11 +146,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         List<Resource> resourceList = resourceService.getResourceList(user.getId());
         return new ShUserDetails(user, resourceList);
-    }
-
-    @Override
-    public boolean updateRole(Long userId, List<Long> roleIds) {
-        return false;
     }
 
     @Override
