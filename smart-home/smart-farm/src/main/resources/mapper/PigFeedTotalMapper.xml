@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.farm.forage.mapper.PigFeedTotalMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.farm.forage.domain.PigFeedTotal">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
+            <result property="sellingUnit" column="selling_unit" jdbcType="VARCHAR"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="INTEGER"/>
+            <result property="buyTotal" column="buy_total" jdbcType="INTEGER"/>
+            <result property="residueTotal" column="residue_total" jdbcType="INTEGER"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+            <result property="productionDate" column="production_date" jdbcType="TIMESTAMP"/>
+            <result property="shelfLife" column="shelf_life" jdbcType="INTEGER"/>
+            <result property="expiredAlert" column="expired_alert" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,brand_id,selling_unit,
+        phone_number,buy_total,residue_total,
+        price,production_date,shelf_life,
+        expired_alert,bills
+    </sql>
+</mapper>

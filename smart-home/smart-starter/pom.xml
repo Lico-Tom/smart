@@ -55,6 +55,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>smart-farm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- flyway初始化表 -->
         <dependency>
             <groupId>org.flywaydb</groupId>

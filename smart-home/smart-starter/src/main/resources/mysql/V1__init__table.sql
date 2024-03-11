@@ -187,3 +187,115 @@ CREATE TABLE `t_recoder` (
     `persons` VARCHAR(250) NOT NULL COMMENT '相关人员列表',
     `files` VARCHAR(250) NOT NULL COMMENT '邮件中的文件对象'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_pig_state
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_state`;
+CREATE TABLE `t_pig_state` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `parent` BIGINT NULL COMMENT '生产该仔的母猪',
+   `start_weight` INT NOT NULL COMMENT '出生体重',
+   `end_weight` BIGINT NULL COMMENT '出栏体重',
+   `price` BIGINT NULL COMMENT '出栏单价',
+   `purchaser` VARCHAR(200) NULL COMMENT '购买者',
+   `phone_number` INT NULL COMMENT '电话号码',
+   `bills` BINARY NOT NULL COMMENT '单据图片',
+   `spend` BIGINT NULL COMMENT '饲养花费',
+   `pigsty_number` BIGINT NOT NULL COMMENT '猪栏编号',
+   `birthday`  datetime NULL DEFAULT NULL COMMENT '出生日期',
+   `sell_date`  datetime NULL DEFAULT NULL COMMENT '出栏日期'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪属性表';
+
+-- ----------------------------
+-- Table structure for t_pig_pigsty
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_pigsty`;
+CREATE TABLE `t_pig_pigsty` (
+   `id` BIGINT PRIMARY KEY COMMENT 'ID',
+   `length` INT NOT NULL COMMENT '猪栏的长',
+   `wide` BIGINT NOT NULL COMMENT '猪栏的宽'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪栏表';
+
+-- ----------------------------
+-- Table structure for t_pig_pigsty_feed
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_pigsty_feed`;
+CREATE TABLE `t_pig_pigsty_feed` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `brand_id` BIGINT NULL COMMENT '猪饲料品牌ID',
+   `pigsty_number` BIGINT NOT NULL COMMENT '猪栏编号',
+   `feed_weight` INT NOT NULL COMMENT '每天使用的饲料量',
+   `day` datetime NULL DEFAULT NULL COMMENT '天'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪饲料表';
+
+-- ----------------------------
+-- Table structure for t_pig_feed_brand
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_feed_brand`;
+CREATE TABLE `t_pig_feed_brand` (
+  `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+  `brand_name` VARCHAR(100) NULL COMMENT '猪饲料品牌名'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪饲料品牌表';
+
+-- ----------------------------
+-- Table structure for t_pig_feed_price
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_feed_price`;
+CREATE TABLE `t_pig_feed_price` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `brand_id` INT NULL COMMENT '猪饲料品牌',
+   `price` INT NOT NULL COMMENT '价格',
+   `day` datetime NULL DEFAULT NULL COMMENT '天'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪饲料价格表';
+
+-- ----------------------------
+-- Table structure for t_pig_feed_total
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_feed_total`;
+CREATE TABLE `t_pig_feed_total` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `brand_id` INT NULL COMMENT '猪饲料品牌',
+   `selling_unit` VARCHAR(200) NULL COMMENT '售卖单位',
+   `phone_number` INT NULL COMMENT '电话号码',
+   `bills` binary NOT NULL COMMENT '单据图片',
+   `buy_total` INT NOT NULL COMMENT '购入总量/包',
+   `residue_total` INT NOT NULL COMMENT '剩余总量/包',
+   `price` INT NOT NULL COMMENT '购入时/单价',
+   `production_date` datetime NULL DEFAULT NULL COMMENT '生产日期',
+   `shelf_life` INT NOT NULL COMMENT '保质期/天',
+   `expired_alert` INT NOT NULL COMMENT '距离多久过期告警/天'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '采购饲料表';
+
+-- ----------------------------
+-- Table structure for t_pig_feed
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_feed`;
+CREATE TABLE `t_pig_feed` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+    `total_id` INT NULL COMMENT '批次ID',
+    `is_expired` INT NOT NULL DEFAULT 1 COMMENT '1表示没过期，0表示过期',
+    `consumer_date` datetime NULL DEFAULT NULL COMMENT '消费日期'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '每包猪饲料表';
+
+-- ----------------------------
+-- Table structure for t_pig_temperature
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_temperature`;
+CREATE TABLE `t_pig_temperature` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `pig_id` BIGINT NULL COMMENT '猪id',
+   `temperature` INT NOT NULL COMMENT '体温°C',
+   `detection_time` datetime NULL DEFAULT NULL COMMENT '称重时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '体温表';
+
+-- ----------------------------
+-- Table structure for t_pig_weight
+-- ----------------------------
+DROP TABLE IF EXISTS `t_pig_weight`;
+CREATE TABLE `t_pig_weight` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `pig_id` BIGINT NULL COMMENT '猪id',
+   `weight` INT NOT NULL COMMENT '猪的重量',
+   `detection_time` datetime NULL DEFAULT NULL COMMENT '称重时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪重量表';

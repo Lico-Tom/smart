@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.farm.poultry.mapper.PigStateMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.farm.poultry.domain.PigState">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="parent" column="parent" jdbcType="BIGINT"/>
+            <result property="startWeight" column="start_weight" jdbcType="INTEGER"/>
+            <result property="endWeight" column="end_weight" jdbcType="BIGINT"/>
+            <result property="price" column="price" jdbcType="BIGINT"/>
+            <result property="purchaser" column="purchaser" jdbcType="VARCHAR"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="INTEGER"/>
+            <result property="spend" column="spend" jdbcType="BIGINT"/>
+            <result property="pigstyNumber" column="pigsty_number" jdbcType="BIGINT"/>
+            <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+            <result property="sellDate" column="sell_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,parent,start_weight,
+        end_weight,price,purchaser,
+        phone_number,spend,pigsty_number,
+        birthday,sell_date,bills
+    </sql>
+</mapper>

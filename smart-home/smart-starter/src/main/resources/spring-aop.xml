@@ -18,8 +18,6 @@
     <!-- 统一事务配置规则 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <!-- 其他方法readonly=true todo bug为什么insert设置为false不起作用-->
-            <!--<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception" />-->
 
             <!-- 查询类方法readonly=true -->
             <tx:method name="query*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception"/>
@@ -42,12 +40,15 @@
             <tx:method name="remove*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
             <tx:method name="recover*" propagation="REQUIRED" isolation="DEFAULT" read-only="false" rollback-for="java.lang.Exception"/>
 
+            <!-- 其他方法readonly=true -->
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" rollback-for="java.lang.Exception" />
+
         </tx:attributes>
     </tx:advice>
 
     <aop:config proxy-target-class="true">
         <!-- 全局切入点：service包及子包下所有以ServiceImpl结尾的类的方法 -->
-        <aop:pointcut id="transaction_log_exceptionPointCut" expression="execution(public * com.smart.*.service..*(..))"/>
+        <aop:pointcut id="transaction_log_exceptionPointCut" expression="execution(public * com.smart.*.mapper..*(..))"/>
 
         <!-- 织入全局事务 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="transaction_log_exceptionPointCut" order="2" />

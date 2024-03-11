@@ -25,6 +25,7 @@
         <module>smart-mail</module>
         <module>smart-batch</module>
         <module>smart-security</module>
+        <module>smart-farm</module>
     </modules>
 
     <properties>
@@ -126,7 +127,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

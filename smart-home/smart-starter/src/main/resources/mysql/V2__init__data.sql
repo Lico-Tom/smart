@@ -252,3 +252,70 @@ INSERT INTO `t_user_role_relation` VALUES (28, 7, 2);
 INSERT INTO `t_user_role_relation` VALUES (29, 1, 5);
 INSERT INTO `t_user_role_relation` VALUES (30, 4, 5);
 INSERT INTO `t_user_role_relation` VALUES (31, 8, 1);
+
+-- ----------------------------
+-- Records of t_pig_state
+-- ----------------------------
+INSERT INTO `t_pig_state` VALUES (1, 0, 20, 200, 10, 'lisi', 123456789, '', 1500, 3, '2023-1-12 23:12:55', '2023-12-12 23:12:55');
+INSERT INTO `t_pig_state` VALUES (2, 0, 20, 200, 10, 'lisi', 12345678, '', 1600, 3, '2023-2-12 23:12:55', '2023-12-12 23:12:55');
+INSERT INTO `t_pig_state` VALUES (3, 0, 20, 200, 10, 'lisi', 1234567, '', 1700, 3, '2023-4-12 23:12:55', '2023-12-12 23:12:55');
+
+-- ----------------------------
+-- Records of t_pig_pigsty
+-- ----------------------------
+INSERT INTO `t_pig_pigsty` VALUES (3, 300, 200);
+INSERT INTO `t_pig_pigsty` VALUES (2, 300, 200);
+INSERT INTO `t_pig_pigsty` VALUES (1, 300, 200);
+
+-- ----------------------------
+-- Records of t_pig_pigsty_feed
+-- ----------------------------
+INSERT INTO `t_pig_pigsty_feed` VALUES (1, 1, 3, 100, '2023-4-12 23:12:55');
+INSERT INTO `t_pig_pigsty_feed` VALUES (2, 1, 3, 100, '2023-4-13 23:12:55');
+INSERT INTO `t_pig_pigsty_feed` VALUES (3, 1, 3, 100, '2023-4-14 23:12:55');
+
+-- ----------------------------
+-- Records of t_pig_feed_brand
+-- ----------------------------
+INSERT INTO `t_pig_feed_brand` VALUES (1, '正大');
+INSERT INTO `t_pig_feed_brand` VALUES (2, '阳光');
+INSERT INTO `t_pig_feed_brand` VALUES (3, '金正大');
+
+-- ----------------------------
+-- Records of t_pig_feed_price
+-- ----------------------------
+INSERT INTO `t_pig_feed_price` VALUES (1, 2, 150, '2023-4-14 23:12:55');
+INSERT INTO `t_pig_feed_price` VALUES (2, 2, 150, '2023-4-15 23:12:55');
+
+-- ----------------------------
+-- Records of t_pig_feed_total
+-- ----------------------------
+INSERT INTO `t_pig_feed_total` VALUES (1, 2, 'lisi', 123456, '', 200, 180, 150, '2023-4-14 23:12:55', 60, 15);
+INSERT INTO `t_pig_feed_total` VALUES (2, 2, 'zhangsan', 1234566, '', 200, 180, 150, '2023-3-14 23:12:55', 60, 15);
+INSERT INTO `t_pig_feed_total` VALUES (3, 2, 'wangwu', 1234565, '', 200, 180, 150, '2023-2-14 23:12:55', 60, 15);
+
+-- ----------------------------
+-- Records of t_pig_feed
+-- ----------------------------
+INSERT INTO `t_pig_feed` VALUES (1, 2, 1, '2023-4-14 23:12:55');
+INSERT INTO `t_pig_feed` VALUES (2, 2, 1, '2023-5-14 23:12:55');
+INSERT INTO `t_pig_feed` VALUES (3, 2, 1, '2023-6-14 23:12:55');
+
+-- ----------------------------
+-- Records of t_pig_temperature
+-- ----------------------------
+INSERT INTO `t_pig_temperature` VALUES (1, 2, 36, '2023-4-14 23:12:55');
+INSERT INTO `t_pig_temperature` VALUES (2, 2, 36, '2023-4-15 23:12:55');
+INSERT INTO `t_pig_temperature` VALUES (3, 2, 36, '2023-4-16 23:12:55');
+
+-- ----------------------------
+-- Records of t_pig_weight
+-- ----------------------------
+INSERT INTO `t_pig_weight` VALUES (1, 2, 130, '2023-4-14 23:12:55');
+INSERT INTO `t_pig_weight` VALUES (2, 2, 130, '2023-4-14 23:12:55');
+INSERT INTO `t_pig_weight` VALUES (3, 2, 130, '2023-4-14 23:12:55');
+
+
+
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.farm.forage.mapper.PigFeedMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.farm.forage.domain.PigFeed">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="totalId" column="total_id" jdbcType="INTEGER"/>
+            <result property="isExpired" column="is_expired" jdbcType="INTEGER"/>
+            <result property="consumerDate" column="consumer_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,total_id,is_expired,
+        consumer_date
+    </sql>
+</mapper>

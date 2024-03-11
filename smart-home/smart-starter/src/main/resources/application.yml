@@ -49,3 +49,4 @@ secure:
       - /v1/smart/user/info
       - /v1/smart/user/*
       - /v1/smart/role/listAll
+      - /v1/smart/*
