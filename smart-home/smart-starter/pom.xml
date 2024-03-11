@@ -55,6 +55,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>smart-farm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- flyway初始化表 -->
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -64,6 +70,12 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>smart-security</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>
@@ -80,7 +92,7 @@
                             <classpathPrefix>lib/</classpathPrefix>
                             <useUniqueVersions>false</useUniqueVersions>
                             <mainClass>
-                                com.smart.admin.SmartStarterApplication
+                                com.smart.starter.SmartStarterApplication
                             </mainClass>
                         </manifest>
                     </archive>
