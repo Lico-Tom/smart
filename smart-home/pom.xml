@@ -16,7 +16,6 @@
 
     <modules>
         <module>smart-iot</module>
-        <module>smart-rest-api</module>
         <module>smart-system</module>
         <module>smart-starter</module>
         <module>smart-task</module>

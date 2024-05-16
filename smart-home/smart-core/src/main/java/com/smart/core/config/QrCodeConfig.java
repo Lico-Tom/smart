@@ -1,4 +1,4 @@
-package com.smart.rest.api.config;
+package com.smart.core.config;
 
 import cn.hutool.extra.qrcode.QrConfig;
 import org.springframework.context.annotation.Bean;
