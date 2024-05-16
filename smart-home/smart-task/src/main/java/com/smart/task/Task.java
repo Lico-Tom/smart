@@ -1,6 +1,6 @@
 package com.smart.task;
 
-import com.smart.rest.api.domain.ScheduleTask;
+import com.smart.task.domain.ScheduleTask;
 
 /**
  * @author Lico-Tom

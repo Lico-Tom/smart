@@ -299,3 +299,63 @@ CREATE TABLE `t_pig_weight` (
    `weight` INT NOT NULL COMMENT '猪的重量',
    `detection_time` datetime NULL DEFAULT NULL COMMENT '称重时间'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '猪重量表';
+
+-- ----------------------------
+-- Table structure for t_mqtt
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mqtt`;
+CREATE TABLE `t_mqtt` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+    `mqtt_addr` VARCHAR(255) NULL COMMENT 'mqtt地址',
+    `mqtt_username` VARCHAR(255) NOT NULL COMMENT '账号',
+    `mqtt_passwd` VARCHAR(255) NOT NULL COMMENT '加密密码',
+    `connect_timeout` INT NOT NULL COMMENT '连接超时时间',
+    `keepalive_interval` INT NOT NULL COMMENT '存活时间',
+    `automatic_reconnect` BIT NOT NULL COMMENT '自动尝试连接 0 true 1 false',
+    `clean_session` BIT NOT NULL COMMENT '重连是是否记住状态',
+    `mqtt_describe` VARCHAR(255) NOT NULL COMMENT '描述',
+    `is_valid` BIT NOT NULL COMMENT '是否有效地址',
+    `detection_time` datetime NULL DEFAULT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'mqtt详情表';
+
+-- ----------------------------
+-- Table structure for t_mqtt_sub
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mqtt_sub`;
+CREATE TABLE `t_mqtt_sub` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `mqtt_id` BIGINT NOT NULL COMMENT 'mqtt的id',
+   `mqtt_topic` VARCHAR(255) NOT NULL COMMENT '订阅主题名',
+   `mqtt_qos` BIT NOT NULL COMMENT '订阅模式',
+   `is_valid` BIT NOT NULL COMMENT '是否有效订阅',
+   `detection_time` datetime NULL DEFAULT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'mqtt 订阅详情表';
+
+-- ----------------------------
+-- Table structure for t_mqtt_pub
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mqtt_pub`;
+CREATE TABLE `t_mqtt_pub` (
+   `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+   `mqtt_id` BIGINT NOT NULL COMMENT 'mqtt的id',
+   `mqtt_topic` VARCHAR(255) NOT NULL COMMENT '发布主题名',
+   `mqtt_qos` BIT NOT NULL COMMENT '订阅模式',
+   `is_valid` BIT NOT NULL COMMENT '是否有效发布主题',
+   `level` BIT NOT NULL COMMENT '控制等级',
+   `detection_time` datetime NULL DEFAULT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'mqtt 发布详情表';
+
+-- ----------------------------
+-- Table structure for t_mqtt_history
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mqtt_history`;
+CREATE TABLE `t_mqtt_history` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+    `sub_ip` VARCHAR(100) NOT NULL COMMENT '订阅者的ip',
+    `pub_ip` VARCHAR(100) NOT NULL COMMENT '消费者的ip',
+    `mqtt_topic` VARCHAR(255) NOT NULL COMMENT '发布主题名',
+    `mqtt_qos` BIT NOT NULL COMMENT '订阅模式',
+    `is_success` BIT NOT NULL COMMENT '是否发送或接收成功',
+    `mqtt_msg` VARCHAR(255) NOT NULL COMMENT '发送或接收的消息',
+    `detection_time` datetime NULL DEFAULT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'mqtt 发布详情表';

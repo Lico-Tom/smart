@@ -1,6 +1,6 @@
 package com.smart.task.event;
 
-import com.smart.task.entity.DaemonTaskEntity;
+import com.smart.task.domain.DaemonTaskEntity;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class DaemonTaskEvent {
 
     @EventListener(classes = {DaemonTaskEntity.class})
-    public void DaemonTaskEventListener(DaemonTaskEntity entity) {
+    public void daemonTaskEventListener(DaemonTaskEntity entity) {
 
     }
 }

@@ -13,13 +13,41 @@ import java.util.List;
 */
 public interface MenuService extends IService<Menu> {
 
+    /**
+     * 根据角色ID查询菜单列表
+     * @param roleId 角色Id
+     * @return 菜单列表
+     */
     List<Menu> listMenu(Long roleId);
 
+    /**
+     * 分配菜单
+     * @param roleId
+     * @param menuIds
+     * @return
+     */
     boolean allocMenu(Long roleId, List<Long> menuIds);
 
+    /**
+     * 查询菜单列表
+     * @param parentId
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
     List<Menu> list(Long parentId, Integer pageSize, Integer pageNum);
 
+    /**
+     * 查询
+     * @return
+     */
     List<MenuNode> treeList();
 
+    /**
+     * 更新
+     * @param id
+     * @param hidden
+     * @return
+     */
     boolean updateHidden(Long id, Integer hidden);
 }

@@ -1,7 +1,7 @@
 package com.smart.task;
 
 import com.smart.core.utils.ApplicationContextUtil;
-import com.smart.rest.api.domain.ScheduleTask;
+import com.smart.task.domain.ScheduleTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 

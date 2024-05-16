@@ -10,6 +10,7 @@ import lombok.Data;
 
 /**
  * 后台菜单表
+ * @author lizhonghao
  * @TableName t_menu
  */
 @TableName(value ="t_menu")

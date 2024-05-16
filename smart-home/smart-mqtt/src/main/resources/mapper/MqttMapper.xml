@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.mqtt.mapper.MqttMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.mqtt.domain.Mqtt">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="mqttAddr" column="mqtt_addr" jdbcType="VARCHAR"/>
+            <result property="mqttUsername" column="mqtt_username" jdbcType="VARCHAR"/>
+            <result property="mqttPasswd" column="mqtt_passwd" jdbcType="VARCHAR"/>
+            <result property="connectTimeout" column="connect_timeout" jdbcType="INTEGER"/>
+            <result property="keepaliveInterval" column="keepalive_interval" jdbcType="INTEGER"/>
+            <result property="automaticReconnect" column="automatic_reconnect" jdbcType="INTEGER"/>
+            <result property="cleanSession" column="clean_session" jdbcType="BIT"/>
+            <result property="describe" column="describe" jdbcType="INTEGER"/>
+            <result property="isValid" column="is_valid" jdbcType="BIT"/>
+            <result property="detectionTime" column="detection_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,mqtt_addr,mqtt_username,
+        mqtt_passwd,connect_timeout,keepalive_interval,
+        automatic_reconnect,clean_session,describe,
+        is_valid,detection_time
+    </sql>
+</mapper>

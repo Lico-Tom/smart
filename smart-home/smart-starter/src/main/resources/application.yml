@@ -49,4 +49,10 @@ secure:
       - /v1/smart/user/info
       - /v1/smart/user/*
       - /v1/smart/role/listAll
-      - /v1/smart/*
+      - /v1/smart/resource/*
+      - /v1/smart/resource-category/*
+      - /v1/mqtt/*
+      - /v1/mqtt-sub/*
+      - /v1/mqtt-pub/*
+      - /v1/mqtt-history/*
+      - /v1/smart/task/*

@@ -1,8 +1,8 @@
 package com.smart.task.ins;
 
 import com.smart.task.TaskSchedule;
-import com.smart.rest.api.domain.ScheduleTask;
-import com.smart.rest.api.service.ScheduleTaskService;
+import com.smart.task.domain.ScheduleTask;
+import com.smart.task.service.ScheduleTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

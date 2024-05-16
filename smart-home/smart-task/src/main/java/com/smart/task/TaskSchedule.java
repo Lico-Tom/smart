@@ -1,7 +1,7 @@
 package com.smart.task;
 
-import com.smart.rest.api.domain.ScheduleTask;
-import com.smart.task.entity.DaemonTaskEntity;
+import com.smart.task.domain.ScheduleTask;
+import com.smart.task.domain.DaemonTaskEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

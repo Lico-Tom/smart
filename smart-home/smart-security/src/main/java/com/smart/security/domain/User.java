@@ -12,6 +12,7 @@ import lombok.Data;
 
 /**
  * 
+ * @author lizhonghao
  * @TableName t_user
  */
 @Data

@@ -9,6 +9,7 @@ import lombok.Data;
 
 /**
  * 后台角色资源关系表
+ * @author lizhonghao
  * @TableName t_role_resource_relation
  */
 @TableName(value ="t_role_resource_relation")

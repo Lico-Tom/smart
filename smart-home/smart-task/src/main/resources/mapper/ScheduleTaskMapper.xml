@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.task.mapper.ScheduleTaskMapper">
 
-    <resultMap id="BaseResultMap" type="com.smart.rest.api.domain.ScheduleTask">
+    <resultMap id="BaseResultMap" type="com.smart.task.domain.ScheduleTask">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="taskName" column="task_name" jdbcType="VARCHAR"/>
             <result property="cronExpression" column="cron_expression" jdbcType="VARCHAR"/>

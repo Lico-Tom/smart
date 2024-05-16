@@ -119,7 +119,7 @@ public class MailSendServiceImpl implements MailSendService {
     }
 
     @Override
-    public void sendHTMLMail(String to, String subject, String content) {
+    public void sendHtmlMail(String to, String subject, String content) {
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);

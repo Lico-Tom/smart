@@ -25,7 +25,7 @@ import java.util.function.Supplier;
 @ConditionalOnBean(name = "dynamicSecurityService")
 public class DynamicAuthorizationManager implements AuthorizationManager<Object> {
 
-    // TODO
+
     public void decide(Authentication authentication, Object object,
                        Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         // 当接口未被配置资源时直接放行
