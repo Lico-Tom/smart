@@ -9,13 +9,28 @@ import java.util.Arrays;
  */
 public enum UpdatePasswordStatus {
 
+    /**
+     * 修改密码成功
+     */
     SUCCESS(0, "修改密码成功"),
+
+    /**
+     * 提交参数不合法
+     */
     NOT_VALIDATED(-1, "提交参数不合法"),
+
+    /**
+     * 找不到该用户
+     */
     NOT_USER(-2, "找不到该用户"),
+
+    /**
+     * 旧密码错误
+     */
     NOT_PASSWORD(-3, "旧密码错误");
 
-    private int code;
-    private String describe;
+    private final int code;
+    private final String describe;
 
     UpdatePasswordStatus(int code, String describe) {
         this.code = code;
@@ -26,7 +41,7 @@ public enum UpdatePasswordStatus {
         UpdatePasswordStatus updatePasswordStatus = Arrays.stream(values())
                 .filter(value -> value.code == code)
                 .findFirst().get();
-        return updatePasswordStatus != null ? updatePasswordStatus.describe : null;
+        return updatePasswordStatus.describe;
     }
 
     public int getCode() {

@@ -1,10 +1,12 @@
 package com.smart.security.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.smart.security.domain.Resource;
 import com.smart.security.service.ResourceService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import java.util.List;
  * 2023/12/4 22:57
  * @version V1.0
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/v1/smart/resource")
 public class ResourceController {
@@ -74,12 +77,10 @@ public class ResourceController {
 
     @Operation(description = "分页模糊查询后台资源")
     @GetMapping(value = "/list")
-    public ResponseEntity<List<Resource>> list(@RequestParam(required = false) Long categoryId,
-                                                   @RequestParam(required = false) String nameKeyword,
-                                                   @RequestParam(required = false) String urlKeyword,
-                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<Resource> resourceList = resourceService.list(categoryId, nameKeyword, urlKeyword, pageSize, pageNum);
+    public ResponseEntity<IPage<Resource>> list(Resource resource,
+                                               @RequestParam(value = "pageSize", defaultValue = "5") String pageSize,
+                                               @RequestParam(value = "currentPage", defaultValue = "1") String currentPage) {
+        IPage<Resource> resourceList = resourceService.list(resource, Integer.parseInt(pageSize), Integer.parseInt(currentPage));
         return new ResponseEntity<>(resourceList, HttpStatus.OK);
     }
 

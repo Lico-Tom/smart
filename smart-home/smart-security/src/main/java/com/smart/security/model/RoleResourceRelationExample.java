@@ -3,6 +3,9 @@ package com.smart.security.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author lizhonghao
+ */
 public class RoleResourceRelationExample {
     protected String orderByClause;
 

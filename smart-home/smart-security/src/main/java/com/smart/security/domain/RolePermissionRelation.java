@@ -9,6 +9,7 @@ import lombok.Data;
 
 /**
  * 后台用户角色和权限关系表
+ * @author lizhonghao
  * @TableName t_role_permission_relation
  */
 @TableName(value ="t_role_permission_relation")

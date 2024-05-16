@@ -1,6 +1,6 @@
 package com.smart.task.mapper;
 
-import com.smart.rest.api.domain.ScheduleTask;
+import com.smart.task.domain.ScheduleTask;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

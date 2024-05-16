@@ -15,12 +15,6 @@
 
         <dependency>
             <groupId>com.smart</groupId>
-            <artifactId>smart-admin</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.smart</groupId>
             <artifactId>smart-iot</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -58,6 +52,12 @@
         <dependency>
             <groupId>com.smart</groupId>
             <artifactId>smart-farm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>smart-mqtt</artifactId>
             <version>${project.version}</version>
         </dependency>
 

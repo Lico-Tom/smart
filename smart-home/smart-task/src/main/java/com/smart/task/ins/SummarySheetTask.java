@@ -1,7 +1,7 @@
 package com.smart.task.ins;
 
 import com.smart.task.Task;
-import com.smart.rest.api.domain.ScheduleTask;
+import com.smart.task.domain.ScheduleTask;
 import org.springframework.stereotype.Component;
 
 /**

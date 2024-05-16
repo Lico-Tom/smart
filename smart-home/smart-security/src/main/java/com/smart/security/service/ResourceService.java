@@ -1,5 +1,6 @@
 package com.smart.security.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.smart.security.domain.Resource;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,7 +17,7 @@ public interface ResourceService extends IService<Resource> {
 
     boolean allocResource(Long roleId, List<Long> resourceIds);
 
-    List<Resource> list(Long categoryId, String nameKeyword, String urlKeyword, Integer pageSize, Integer pageNum);
+    IPage<Resource> list(Resource resource, Integer pageSize, Integer pageNum);
 
     List<Resource> getResourceList(Long userId);
 }

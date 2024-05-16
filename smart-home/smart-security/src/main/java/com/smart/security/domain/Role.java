@@ -10,6 +10,7 @@ import lombok.Data;
 
 /**
  * 后台用户角色表
+ * @author lizhonghao
  * @TableName t_role
  */
 @TableName(value ="t_role")

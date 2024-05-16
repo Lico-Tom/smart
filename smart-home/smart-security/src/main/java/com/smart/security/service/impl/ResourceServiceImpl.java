@@ -1,5 +1,8 @@
 package com.smart.security.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.smart.security.domain.Resource;
 import com.smart.security.domain.RoleResourceRelation;
@@ -60,8 +63,16 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     }
 
     @Override
-    public List<Resource> list(Long categoryId, String nameKeyword, String urlKeyword, Integer pageSize, Integer pageNum) {
-        return null;
+    public IPage<Resource> list(Resource resource, Integer pageSize, Integer currentPage) {
+        QueryWrapper<Resource> wrapper = new QueryWrapper<>();
+        wrapper.eq(resource.getId() != null, "id", resource.getId());
+        wrapper.eq(resource.getName() != null, "name", resource.getName());
+        wrapper.eq(resource.getCategoryId() != -1, "category_id", resource.getCategoryId());
+        wrapper.eq(resource.getUrl() != null, "url", resource.getUrl());
+        wrapper.eq(resource.getCreateTime() != null, "create_time", resource.getCreateTime());
+        Page<Resource> page = new Page<>(currentPage, pageSize, count(wrapper));
+        wrapper.last("LIMIT " + pageSize + " OFFSET " + (pageSize * (currentPage - 1)));
+        return resourceMapper.selectPage(page, wrapper);
     }
 
     @Override

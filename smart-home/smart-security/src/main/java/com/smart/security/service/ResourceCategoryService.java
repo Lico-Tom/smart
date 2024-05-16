@@ -1,5 +1,6 @@
 package com.smart.security.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.smart.security.domain.ResourceCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ResourceCategoryService extends IService<ResourceCategory> {
 
+    IPage<ResourceCategory> list(ResourceCategory resourceCategory, int pageSize, int currentPage);
 }

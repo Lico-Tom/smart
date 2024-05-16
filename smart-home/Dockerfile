@@ -9,8 +9,8 @@ WORKDIR /opt/smart-home
 
 ENV HOME_DIR /opt/smart-home
 
-COPY --from=build /opt/compile/smart-starter/target/smart-start*.jar ./smart-home.jar
-COPY --from=build /opt/compile/smart-starter/target/conf /opt/paas-dashboard/conf
-COPY --from=build /opt/compile/smart-starter/target/lib /opt/paas-dashboard/lib
+COPY ./smart-starter/target/smart-start*.jar ./smart-home.jar
+COPY ./smart-starter/target/lib ./lib
+COPY ./script ./script
 
 CMD ["/opt/smart-home/script/start.sh", "run"]

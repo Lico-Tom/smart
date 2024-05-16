@@ -15,9 +15,15 @@ import java.util.stream.Collectors;
  * @date 2023/12/4
  */
 public class ShUserDetails implements UserDetails {
-    //后台用户
+
+    /**
+     * 后台用户
+     */
     private final User user;
-    //拥有资源列表
+
+    /**
+     * 拥有资源列表
+     */
     private final List<Resource> resourceList;
 
     public ShUserDetails(User user, List<Resource> resourceList) {

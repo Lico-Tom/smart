@@ -10,6 +10,7 @@ import lombok.Data;
 
 /**
  * 后台用户权限表
+ * @author lizhonghao
  * @TableName t_permission
  */
 @TableName(value ="t_permission")

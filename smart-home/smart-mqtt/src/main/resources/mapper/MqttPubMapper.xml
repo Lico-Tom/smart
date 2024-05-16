@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.mqtt.mapper.MqttPubMapper">
+
+    <resultMap id="BaseResultMap" type="com.smart.mqtt.domain.MqttPub">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="mqttId" column="mqtt_id" jdbcType="BIGINT"/>
+            <result property="mqttTopic" column="mqtt_topic" jdbcType="VARCHAR"/>
+            <result property="mqttQos" column="mqtt_qos" jdbcType="BIT"/>
+            <result property="isValid" column="is_valid" jdbcType="BIT"/>
+            <result property="level" column="level" jdbcType="BIT"/>
+            <result property="detectionTime" column="detection_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,mqtt_id,mqtt_topic,
+        mqtt_qos,is_valid,level,
+        detection_time
+    </sql>
+</mapper>

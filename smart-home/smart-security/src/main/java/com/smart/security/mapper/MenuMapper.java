@@ -15,6 +15,11 @@ import java.util.List;
 @Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 查询角色对应的菜单列表
+     * @param roleId 角色id
+     * @return 菜单列表
+     */
     List<Menu> selectMenusByRoleId(Long roleId);
 }
 

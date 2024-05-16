@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class Swagger3Config {
 
     @Bean
-    public OpenAPI openAPI() {
+    public OpenAPI openApi() {
         return new OpenAPI()
                 .info(new Info()
                         .title("smart home")

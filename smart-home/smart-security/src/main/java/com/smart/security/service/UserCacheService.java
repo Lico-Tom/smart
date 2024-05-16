@@ -64,7 +64,6 @@ public interface UserCacheService {
 
     /**
      * 获取缓存后台用户资源列表
-     *
      * @param userId
      * @return
      */
@@ -72,10 +71,8 @@ public interface UserCacheService {
 
     /**
      * 设置缓存后台用户资源列表
-     *
      * @Param adminId
      * @Param ResourceList
-     *
      */
     void setResourceList(Long adminId, List<Resource> resourceList);
 }

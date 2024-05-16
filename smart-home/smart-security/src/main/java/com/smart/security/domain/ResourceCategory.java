@@ -10,6 +10,7 @@ import lombok.Data;
 
 /**
  * 资源分类表
+ * @author lizhonghao
  * @TableName t_resource_category
  */
 @TableName(value ="t_resource_category")

@@ -15,7 +15,7 @@
 -- ----------------------------
 -- Records of t_schedule_task
 -- ----------------------------
-INSERT INTO t_schedule_task (id, task_name, cron_expression, details) VALUES (1, "com.smart.task.ins.SummarySheetTask","0 0 2 1 * ? *", "月报分析");
+INSERT INTO t_schedule_task (id, task_name, cron_expression, details) VALUES (1, 'com.smart.task.ins.SummarySheetTask','0 0 2 1 * ? *', '月报分析');
 
 -- ----------------------------
 -- Records of t_role
@@ -235,7 +235,7 @@ INSERT INTO `t_role_resource_relation` VALUES (248, 1, 32);
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES (1, 'test', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_02.png', 'test@qq.com', '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1);
-INSERT INTO `t_user` VALUES (3, 'admin', '$2a$10$.E1FokumK5GIXWgKlg.Hc.i/0/2.qdAwYFL1zc5QHdyzpXOr38RZO', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_01.png', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
+INSERT INTO `t_user` VALUES (3, 'admin', '$2a$10$moL..bh.Ie1OBMzb2kNFQeTpaW3CVAgv/CPdY.SpTrLbk5Hg8nviS', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_01.png', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-04-20 12:45:16', 1);
 INSERT INTO `t_user` VALUES (4, 'macro', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_01.png', 'macro@qq.com', 'macro', 'macro专用', '2019-10-06 15:53:51', '2020-02-03 14:55:55', 1);
 INSERT INTO `t_user` VALUES (6, 'productAdmin', '$2a$10$6/.J.p.6Bhn7ic4GfoB5D.pGd7xSiD1a9M6ht6yO0fxzlKJPjRAGm', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_03.png', 'product@qq.com', '商品管理员', '只有商品权限', '2020-02-07 16:15:08', NULL, 1);
 INSERT INTO `t_user` VALUES (7, 'orderAdmin', '$2a$10$UqEhA9UZXjHHA3B.L9wNG.6aerrBjC6WHTtbv1FdvYPUI.7lkL6E.', 'https://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/icon/github_icon_04.png', 'order@qq.com', '订单管理员', '只有订单管理权限', '2020-02-07 16:15:50', NULL, 1);
@@ -316,6 +316,51 @@ INSERT INTO `t_pig_weight` VALUES (2, 2, 130, '2023-4-14 23:12:55');
 INSERT INTO `t_pig_weight` VALUES (3, 2, 130, '2023-4-14 23:12:55');
 
 
+-- ----------------------------
+-- Table structure for t_mqtt
+-- ----------------------------
+INSERT INTO `t_mqtt` VALUES (1, '127.0.0.1:1883', 'admin', 'admin', 30, 60, 0, 0, 'admin 用戶连接地址', 1, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt` VALUES (2, '127.0.0.1:1883', 'user', 'user', 30, 60, 0, 0, 'user 用戶连接地址', 1, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt` VALUES (3, '127.0.0.1:1883', 'agent', 'agent', 30, 60, 0, 0, 'agent 用戶连接地址', 1, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt` VALUES (4, '127.0.0.1:1883', 'ss', 'ss', 30, 60, 0, 0, 'ss 用戶连接地址', 1, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt` VALUES (5, '127.0.0.1:1883', 'uu', 'uu', 30, 60, 0, 0, 'admin 用戶连接地址', 1, '2023-4-14 23:12:55');
 
 
+-- ----------------------------
+-- Table structure for t_mqtt_sub
+-- ----------------------------
+INSERT INTO `t_mqtt_sub` VALUES (1, 12234533,'topic_id', 1, 0,'2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_sub` VALUES (2, 12234533,'topic_id', 1, 0,'2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_sub` VALUES (3, 12234533,'topic_id', 1, 0,'2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_sub` VALUES (4, 12234533,'topic_id', 1, 0,'2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_sub` VALUES (5, 12234533,'topic_id', 1, 0,'2023-4-14 23:12:55');
 
+
+-- ----------------------------
+-- Table structure for t_mqtt_pub
+-- ----------------------------
+INSERT INTO `t_mqtt_pub` VALUES (1, 34556778,'topic_id', 1, 0, 0, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_pub` VALUES (2, 34556778,'topic_id', 1, 0, 0, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_pub` VALUES (3, 34556778,'topic_id', 1, 0, 0, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_pub` VALUES (4, 34556778,'topic_id', 1, 0, 0, '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_pub` VALUES (5, 34556778,'topic_id', 1, 0, 0, '2023-4-14 23:12:55');
+
+
+-- ----------------------------
+-- Table structure for t_mqtt_history
+-- ----------------------------
+INSERT INTO `t_mqtt_history` VALUES (1, 'sub_ip', 'pub_ip', 'mqtt_topic', 1, 0, 'is success', '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_history` VALUES (2, 'sub_ip', 'pub_ip', 'mqtt_topic', 1, 0, 'is success', '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_history` VALUES (3, 'sub_ip', 'pub_ip', 'mqtt_topic', 1, 0, 'is success', '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_history` VALUES (4, 'sub_ip', 'pub_ip', 'mqtt_topic', 1, 0, 'is success', '2023-4-14 23:12:55');
+INSERT INTO `t_mqtt_history` VALUES (5, 'sub_ip', 'pub_ip', 'mqtt_topic', 1, 0, 'is success', '2023-4-14 23:12:55');
+;
+-- ----------------------------
+-- Records of t_schedule_taskf
+-- ----------------------------
+INSERT INTO `t_schedule_task` VALUES (127, 'com.smart.task.ins.SummarySheetTask', '0 0/20 * * * ?', '每20分钟执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');
+INSERT INTO `t_schedule_task` VALUES (122, 'com.smart.task.ins.SummarySheetTask', '0 0 0 0 1/1 ?', '每月1号开始，每月1号执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');
+INSERT INTO `t_schedule_task` VALUES (123, 'com.smart.task.ins.SummarySheetTask', '0 0 5 0 * ? *', '每五天执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');
+INSERT INTO `t_schedule_task` VALUES (124, 'com.smart.task.ins.SummarySheetTask', '0 0 6 0 * ? *', '每六天执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');
+INSERT INTO `t_schedule_task` VALUES (125, 'com.smart.task.ins.SummarySheetTask', '0 0 5 2 * ? *', '每五天执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');
+INSERT INTO `t_schedule_task` VALUES (126, 'com.smart.task.ins.SummarySheetTask', '0 0 8 0 * ? *', '每八天执行一次', '2023-4-14 23:12:55', '2023-4-14 23:12:55');

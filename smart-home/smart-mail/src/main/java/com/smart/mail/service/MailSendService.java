@@ -73,7 +73,7 @@ public interface MailSendService {
      * @param content
      * @return
      */
-    void sendHTMLMail(String to, String subject, String content);
+    void sendHtmlMail(String to, String subject, String content);
 
     /**
      * 发送文本

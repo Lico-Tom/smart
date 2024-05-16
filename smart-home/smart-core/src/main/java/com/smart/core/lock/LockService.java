@@ -13,10 +13,8 @@ public interface LockService extends IService<Lock> {
 
     /**
      * 是否锁成功
-     *
      * @Param lock 锁信息
-     *
-     * @return boolean 锁住返回true，没锁住返回false
+     * @return 锁住返回true，没锁住返回false
      */
     boolean isTryLock(Lock lock);
 
