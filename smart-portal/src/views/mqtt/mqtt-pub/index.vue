@@ -93,6 +93,7 @@ export default {
       this.getMqttPubs()
     },
     onSearch() {
+      this.getMqttPubs()
     }
   }
 }
