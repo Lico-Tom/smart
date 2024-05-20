@@ -33,7 +33,7 @@ public class ScheduleTaskControllerTest {
     @MockBean
     private ScheduleTaskService scheduleTaskService;
 
-    @Value("${base-task-url}")
+    @Value("${base-task-url:/v1/task}")
     private String bashTask;
 
 

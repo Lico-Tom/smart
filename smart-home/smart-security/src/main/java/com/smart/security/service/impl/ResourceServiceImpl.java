@@ -14,6 +14,7 @@ import com.smart.security.service.UserCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,6 +80,11 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     public List<Resource> getResourceList(Long userId) {
         List<Resource> resourceList = resourceMapper.getResourceList(userId);
         return resourceList;
+    }
+
+    @Override
+    public List<Resource> listAll() {
+        return new ArrayList<>();
     }
 }
 

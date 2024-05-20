@@ -1,6 +1,5 @@
 package com.smart.security.config;
 
-import com.smart.core.utils.JwtTokenUtil;
 import com.smart.security.component.DynamicSecurityFilter;
 import com.smart.security.component.DynamicSecurityService;
 import com.smart.security.component.JwtAuthenticationTokenFilter;
@@ -25,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SmartSecurityConfig {
 
 
     private final IgnoreUrlsConfig ignoreUrlsConfig;
@@ -40,12 +39,12 @@ public class SecurityConfig {
 
     private final DynamicSecurityFilter dynamicSecurityFilter;
 
-    public SecurityConfig(@Autowired IgnoreUrlsConfig ignoreUrlsConfig,
-                          @Autowired RestfulAccessDeniedHandler restfulAccessDeniedHandler,
-                          @Autowired RestAuthenticationEntryPoint restAuthenticationEntryPoint,
-                          @Autowired JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter,
-                          @Autowired(required = false) DynamicSecurityService dynamicSecurityService,
-                          @Autowired(required = false) DynamicSecurityFilter dynamicSecurityFilter) {
+    public SmartSecurityConfig(@Autowired IgnoreUrlsConfig ignoreUrlsConfig,
+                               @Autowired RestfulAccessDeniedHandler restfulAccessDeniedHandler,
+                               @Autowired RestAuthenticationEntryPoint restAuthenticationEntryPoint,
+                               @Autowired JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter,
+                               @Autowired DynamicSecurityService dynamicSecurityService,
+                               @Autowired DynamicSecurityFilter dynamicSecurityFilter) {
         this.ignoreUrlsConfig = ignoreUrlsConfig;
         this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;

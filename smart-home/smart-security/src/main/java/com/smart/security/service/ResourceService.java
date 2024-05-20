@@ -20,4 +20,6 @@ public interface ResourceService extends IService<Resource> {
     IPage<Resource> list(Resource resource, Integer pageSize, Integer pageNum);
 
     List<Resource> getResourceList(Long userId);
+
+    List<Resource> listAll();
 }
