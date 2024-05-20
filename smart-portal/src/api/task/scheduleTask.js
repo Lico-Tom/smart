@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const basePath = '/v1/smart/task'
+const basePath = '/v1/task'
 
 export function fetchTasks(pageSize, currentPage, task) {
   return request({

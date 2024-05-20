@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     getfetchMqttHistory() {
-      fetchMqttHistory(this.pagination.pageSize, this.pagination.currentPage, this.mqttHistory).then((response) => {
+      fetchMqttHistory(this.pagination.pageSize, this.pagination.currentPage, this.fetchMqttHistory).then((response) => {
         this.fetchMqttHistories = response.records
         this.pagination.pageSize = response.size
         this.pagination.currentPage = response.current
@@ -99,6 +99,7 @@ export default {
       this.getfetchMqttHistory()
     },
     onSearch() {
+      this.getfetchMqttHistory()
     }
   }
 }

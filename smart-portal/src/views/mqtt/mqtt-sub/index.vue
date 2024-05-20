@@ -91,6 +91,7 @@ export default {
       this.getmqttSubs()
     },
     onSearch() {
+      this.getmqttSubs()
     }
   }
 }
