@@ -9,11 +9,11 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.access.SecurityMetadataSource;
+import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
+import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
@@ -27,8 +27,7 @@ import java.io.IOException;
  * @date 2023/12/3
  */
 @Component
-@ConditionalOnBean(name = "dynamicSecurityService")
-public class DynamicSecurityFilter extends AuthorizationFilter implements Filter {
+public class DynamicSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 
     private final DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
@@ -36,15 +35,20 @@ public class DynamicSecurityFilter extends AuthorizationFilter implements Filter
 
     /**
      * Creates an instance.
-     *
-     * @param authorizationManager the {@link AuthorizationManager} to use
      */
-    public DynamicSecurityFilter(AuthorizationManager<HttpServletRequest> authorizationManager,
-                                 @Autowired DynamicSecurityMetadataSource dynamicSecurityMetadataSource,
+    public DynamicSecurityFilter(@Autowired DynamicSecurityMetadataSource dynamicSecurityMetadataSource,
                                  @Autowired IgnoreUrlsConfig ignoreUrlsConfig) {
-        super(authorizationManager);
         this.dynamicSecurityMetadataSource = dynamicSecurityMetadataSource;
         this.ignoreUrlsConfig = ignoreUrlsConfig;
+    }
+
+    @Autowired
+    public void setMyAccessDecisionManager(DynamicAuthorizationManager dynamicAccessDecisionManager) {
+        super.setAccessDecisionManager(dynamicAccessDecisionManager);
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
     }
 
     @Override
@@ -65,11 +69,25 @@ public class DynamicSecurityFilter extends AuthorizationFilter implements Filter
             }
         }
         // todo 此处会调用AccessDecisionManager中的decide方法进行鉴权操作
-        fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+        InterceptorStatusToken token = super.beforeInvocation(fi);
+        try {
+            fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+        } finally {
+            super.afterInvocation(token, null);
+        }
     }
 
     @Override
     public void destroy() {
     }
 
+    @Override
+    public Class<?> getSecureObjectClass() {
+        return FilterInvocation.class;
+    }
+
+    @Override
+    public SecurityMetadataSource obtainSecurityMetadataSource() {
+        return dynamicSecurityMetadataSource;
+    }
 }

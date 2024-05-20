@@ -21,12 +21,6 @@
 
         <dependency>
             <groupId>com.smart</groupId>
-            <artifactId>smart-rest-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.smart</groupId>
             <artifactId>smart-system</artifactId>
             <version>${project.version}</version>
         </dependency>

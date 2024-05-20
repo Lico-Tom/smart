@@ -8,7 +8,7 @@ import com.smart.core.utils.ApplicationContextUtil;
 import com.smart.core.utils.JwtTokenUtil;
 import com.smart.security.UpdatePasswordStatus;
 import com.smart.security.domain.Resource;
-import com.smart.security.domain.ShUserDetails;
+import com.smart.security.domain.UserDetailsImpl;
 import com.smart.security.domain.UpdatePasswordParam;
 import com.smart.security.domain.User;
 import com.smart.security.domain.UserParam;
@@ -145,7 +145,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new UsernameNotFoundException("用户名不存在");
         }
         List<Resource> resourceList = resourceService.getResourceList(user.getId());
-        return new ShUserDetails(user, resourceList);
+        return new UserDetailsImpl(user, resourceList);
     }
 
     @Override

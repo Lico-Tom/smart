@@ -24,7 +24,6 @@ import java.util.Map;
  * @date 2023/12/3
  */
 @Component
-@ConditionalOnBean(name = "dynamicSecurityService")
 public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
     private static Map<String, ConfigAttribute> configAttributeMap = null;

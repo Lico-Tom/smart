@@ -1,5 +1,6 @@
 package com.smart.security.controller;
 
+import com.smart.core.utils.JwtTokenUtil;
 import com.smart.security.domain.LoginParam;
 import com.smart.security.domain.User;
 import com.smart.security.dto.LoginDto;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,14 +45,17 @@ public class LoginController {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    private final JwtTokenUtil jwtTokenUtil;
+
     private final UserService userService;
 
     private final RoleService roleService;
 
     @Autowired
-    public LoginController(UserService userService, RoleService roleService) {
+    public LoginController(UserService userService, RoleService roleService, JwtTokenUtil jwtTokenUtil) {
         this.userService = userService;
         this.roleService = roleService;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @Operation(description = "登录以后返回token")
@@ -59,7 +64,7 @@ public class LoginController {
         String token = userService.login(loginParam.getUsername(), loginParam.getPassword());
         LoginDto loginDto = new LoginDto();
         loginDto.setCode(2000);
-        loginDto.setData(new TokenDto(token));
+        loginDto.setData(new TokenDto(tokenHead + token));
         return new ResponseEntity<>(loginDto, HttpStatus.OK);
     }
 
@@ -80,7 +85,8 @@ public class LoginController {
     @Operation(description = "获取当前登录用户信息")
     @GetMapping(value = "/info")
     public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token) {
-        User user = userService.getAdminByUsername("admin");
+        String nameFromToken = jwtTokenUtil.getUserNameFromToken(token.substring(this.tokenHead.length()));
+        User user = userService.getAdminByUsername(nameFromToken);
         UserDto userInfo = new UserDto();
         userInfo.setCode(20000);
         RoleData roleData = RoleData.builder()

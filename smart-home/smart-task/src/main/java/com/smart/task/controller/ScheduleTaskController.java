@@ -37,7 +37,7 @@ import java.util.List;
 @Validated
 @RestController
 @Tag(name = "ScheduleTask")
-@RequestMapping(value = "${base-task-url}")
+@RequestMapping(value = "/v1/task")
 public class ScheduleTaskController {
 
     private final ScheduleTaskService scheduleTaskService;

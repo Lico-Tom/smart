@@ -12,11 +12,6 @@
     <artifactId>smart-iot</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.smart</groupId>
-            <artifactId>smart-rest-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

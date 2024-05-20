@@ -1,4 +1,4 @@
-package com.smart.rest.api.config;
+package com.smart.core.config;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;

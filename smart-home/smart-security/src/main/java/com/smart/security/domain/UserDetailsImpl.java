@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @author lizhonghao
  * @date 2023/12/4
  */
-public class ShUserDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
     /**
      * 后台用户
@@ -26,7 +26,7 @@ public class ShUserDetails implements UserDetails {
      */
     private final List<Resource> resourceList;
 
-    public ShUserDetails(User user, List<Resource> resourceList) {
+    public UserDetailsImpl(User user, List<Resource> resourceList) {
         this.user = user;
         this.resourceList = resourceList;
     }
