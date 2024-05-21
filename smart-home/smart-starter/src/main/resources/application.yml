@@ -17,7 +17,6 @@ spring:
     jdbc:
       initialize-schema: always
   flyway:
-    locations: classpath:mysql
     enabled: true
     encoding: UTF-8
     sql-migration-prefix: V
