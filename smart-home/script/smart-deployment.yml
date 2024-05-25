@@ -1,0 +1,107 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: s1.dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: s1.pod
+  template:
+    metadata:
+      labels:
+        app: s1.pod
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: disktype
+                    operator: In
+                    values:
+                      - ssd
+      containers:
+        - name: smart-home
+          image: smart-home:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9091
+          env:
+            - name: DATABASE_NAME
+              value: "jdbc:derby://localhost:1527/smart-home;create=true"
+            - name: MYSQL_IP
+              value: "192.168.31.248"
+            - name: MYSQL_PASSWORD
+              value: "root"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: "root"
+          livenessProbe:
+            httpGet:
+              path: /liveness/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readiness/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+            requests:
+              cpu: "0.5"
+              memory: "1Gi"
+        - name: smart-portal
+          image: smart-portal:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: DATABASE_NAME
+              value: "jdbc:derby://localhost:1527/smart-home;create=true"
+            - name: MYSQL_IP
+              value: "192.168.31.248"
+            - name: MYSQL_PASSWORD
+              value: "root"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: "root"
+          livenessProbe:
+            httpGet:
+              path: /liveness/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readiness/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+            requests:
+              cpu: "0.5"
+              memory: "1Gi"
+      tolerations:
+        - key: "example-key"
+          operator: "Exists"
+          effect: "NoSchedule"
+      volumeMounts:
+        - mountPath: "daily_log"
+          name: log_dir
+  volumes:
+    - name: hp-volume
+      hostPath:
+        path: /opt/smart-home/log
