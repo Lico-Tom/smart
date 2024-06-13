@@ -27,7 +27,7 @@ spring:
   profiles:
     include: base-path
     # 适配多个yml配置文件，多个配置文件以‘,’分割
-    active: ${DEPLOYMENT_ENVIRONMENT:prod}
+    active: dev
 logging:
   config: classpath:log4j2.yml
 mybatis-plus:
