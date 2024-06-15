@@ -6,6 +6,10 @@ if [ -n "$VUE_APP_BASE_URL" ]; then
       sed -i "s#target_url#${VUE_APP_BASE_URL}#g" "${HOME_DIR}"/conf/nginx.conf
 fi
 
+if [ -n "$VUE_APP_BASE_HOST" ]; then
+    sed -i "s#target_url#${VUE_APP_BASE_HOST}#g" "${HOME_DIR}"/conf/nginx.conf
+fi
+
 cp "${HOME_DIR}"/conf/nginx.conf /usr/local/nginx/conf/
 /usr/local/nginx/sbin/nginx
 tail -f /dev/null

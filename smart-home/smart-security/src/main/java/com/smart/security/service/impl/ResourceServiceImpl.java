@@ -84,7 +84,7 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
 
     @Override
     public List<Resource> listAll() {
-        return new ArrayList<>();
+        return resourceMapper.selectList(null);
     }
 }
 
