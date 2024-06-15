@@ -13,24 +13,20 @@ source /etc/profile
 JAVA_OPTS="${JAVA_OPTS} -Dspring.profiles.active=prod"
 
 # 设置 JVM启动时的初始堆内存(xms)，这有助于避免JVM在启动后不久就因为内存需求增长而进行垃圾回收，从而提高启动性能。
-JAVA_OPTS="${JAVA_OPTS} -Xms${XMS:4g}"
+JAVA_OPTS="${JAVA_OPTS} -Xms${XMS:-1g}"
 
 # 设置 JVM可以使用的最大堆内存(xmx)，确保应用程序有足够的内存来执行，同时也防止了JVM消耗过多的系统资源。
-JAVA_OPTS="${JAVA_OPTS} -Xmx${XMX:4g}"
+JAVA_OPTS="${JAVA_OPTS} -Xmx${XMX:-1g}"
 
 # 适配 最大元空间(MetaspaceSize) 和 最大元空间(MaxMetaspaceSize) 参数
 #为元数据区设置最大512MB的内存限制，JDK 8及之后版本的参数，用于限制元数据区的大小，元数据区是永久代的替代品。
-JAVA_OPTS="${JAVA_OPTS} -XX:MaxMetaspaceSize=${MAX_METASPACE_SIZE:256m} -XX:MetaspaceSize=${METASPACE_SIZE:256m}"
+JAVA_OPTS="${JAVA_OPTS} -XX:MaxMetaspaceSize=${MAX_METASPACE_SIZE:-256m} -XX:MetaspaceSize=${METASPACE_SIZE:-256m}"
 
 # 适配 垃圾回收器设置
 JAVA_OPTS="${JAVA_OPTS} -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=8"
 
 #线程和锁优化 ThreadStackSize 避免栈溢出
 JAVA_OPTS="${JAVA_OPTS} -XX:ThreadStackSize=256k"
-#UseBiasedLocking 偏向锁 启用偏向锁，减少无竞争情况下的同步开销，提高并发性能，特别是在有大量线程竞争同一锁的情况下。
-JAVA_OPTS="${JAVA_OPTS} -XX:UseBiasedLocking=true"
-#启用G1 GC的MMU（内存管理单元）统计信息，有助于监控和调优G1 GC的性能。
-JAVA_OPTS="${JAVA_OPTS} -XX:+UseG1MMUStatistics"
 
 # 适配 性能监控和调试
 #输出详细的GC日志，有助于分析和调优GC行为，是性能调优的重要工具。
@@ -43,4 +39,4 @@ JAVA_OPTS="${JAVA_OPTS} -XX:+HeapDumpOnOutOfMemoryError"
 JAVA_OPTS="${JAVA_OPTS} -XX:HeapDumpPath=${HOME_DIR}/logs/heap_dump.hprof"
 
 # 启动java程序
-java -jar "${JAVA_OPTS}" "${HOME_DIR}"/smart-home.jar
+java -jar ${JAVA_OPTS} "${HOME_DIR}"/smart-home.jar

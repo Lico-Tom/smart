@@ -9,9 +9,8 @@ services:
       - smart-home
     ports:
       - "80:8080"
-    volumes:
-      - data:"/data"
-      - log:"/log"
+    environment:
+      - VUE_APP_BASE_URL=smart_home
   smart-home:
     image: smart-home:latest
     networks:
