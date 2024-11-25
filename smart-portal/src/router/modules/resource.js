@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import i18n from '../../../i18n/i18n'
 
 const resourceRouter = {
   path: '/resource',
@@ -6,7 +7,7 @@ const resourceRouter = {
   redirect: 'noRedirect',
   name: 'resource',
   meta: {
-    title: 'resource',
+    title: i18n.t('common.resource'),
     icon: 'nested'
   },
   children: [
@@ -15,7 +16,7 @@ const resourceRouter = {
       component: () => import('@/views/resource/index'),
       name: 'resources',
       meta: {
-        title: 'resources'
+        title: i18n.t('resource.resources')
       }
     },
     {
@@ -23,7 +24,7 @@ const resourceRouter = {
       component: () => import('@/views/resource/resource_category/index'),
       name: 'resource-category',
       meta: {
-        title: 'resource category'
+        title: i18n.t('resource.resourceCategory')
       }
     }
   ]
