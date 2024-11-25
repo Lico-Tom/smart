@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import i18n from '../../../i18n/i18n'
 
 const taskRouter = {
   path: '/task',
@@ -6,7 +7,7 @@ const taskRouter = {
   redirect: 'noRedirect',
   name: 'task',
   meta: {
-    title: 'task',
+    title: i18n.t('common.task'),
     icon: 'nested'
   },
   children: [
@@ -15,7 +16,7 @@ const taskRouter = {
       component: () => import('@/views/task/index'),
       name: 'task',
       meta: {
-        title: 'task'
+        title: i18n.t('task.tasks')
       }
     }
   ]

@@ -1,11 +1,12 @@
 import Layout from '@/layout'
+import i18n from '../../../i18n/i18n'
 const userRouter = {
   path: '/users',
   component: Layout,
   redirect: 'noRedirect',
   name: 'users',
   meta: {
-    title: 'user',
+    title: i18n.t('common.user'),
     icon: 'user'
   },
   children: [
@@ -13,14 +14,14 @@ const userRouter = {
       path: '/register',
       component: () => import('@/views/login/user-list'),
       name: 'user',
-      meta: { title: 'register' }
+      meta: { title: i18n.t('user.register') }
     },
     {
       path: '/list',
       component: () => import('@/views/user/index'),
       name: 'list',
       meta: {
-        title: 'list'
+        title: i18n.t('user.list')
       }
     }
   ]
