@@ -9,6 +9,8 @@ import userRouter from '@/router/modules/user'
 import resourceRouter from '@/router/modules/resource'
 import mqttRouter from '@/router/modules/mqtt'
 import taskRouter from '@/router/modules/task'
+import dashboardRouter from '@/router/modules/bashboard'
+import i18n from '../../i18n/i18n'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -50,12 +52,12 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'home',
+      name: 'Home',
+      component: () => import('@/views/home/index'),
+      meta: { title: i18n.t('common.home'), icon: 'dashboard' }
     }]
   },
   userRouter,
@@ -65,6 +67,8 @@ export const constantRoutes = [
   mqttRouter,
 
   taskRouter,
+
+  dashboardRouter,
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

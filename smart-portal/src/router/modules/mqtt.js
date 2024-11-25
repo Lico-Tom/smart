@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import i18n from '../../../i18n/i18n'
 
 const mqttRouter = {
   path: '/mqtt',
@@ -6,7 +7,7 @@ const mqttRouter = {
   redirect: 'noRedirect',
   name: 'mqtt',
   meta: {
-    title: 'mqtt',
+    title: i18n.t('common.mqtt'),
     icon: 'nested'
   },
   children: [
@@ -15,7 +16,7 @@ const mqttRouter = {
       component: () => import('@/views/mqtt/index'),
       name: 'mqtt',
       meta: {
-        title: 'mqtt'
+        title: i18n.t('mqtt.mqtts')
       }
     },
     {
@@ -23,7 +24,7 @@ const mqttRouter = {
       component: () => import('@/views/mqtt/mqtt-pub/index'),
       name: 'pub',
       meta: {
-        title: 'pub'
+        title: i18n.t('mqtt.pub')
       }
     },
     {
@@ -31,7 +32,7 @@ const mqttRouter = {
       component: () => import('@/views/mqtt/mqtt-sub/index'),
       name: 'sub',
       meta: {
-        title: 'sub'
+        title: i18n.t('mqtt.sub')
       }
     },
     {
@@ -39,7 +40,7 @@ const mqttRouter = {
       component: () => import('@/views/mqtt/mqtt-history/index'),
       name: 'history',
       meta: {
-        title: 'history'
+        title: i18n.t('mqtt.history')
       }
     }
   ]
