@@ -1,6 +1,5 @@
 package com.smart.security.component;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -22,12 +21,16 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
-                       AccessDeniedException e) throws IOException, ServletException {
+                       AccessDeniedException e) throws IOException {
+        setAccessDeniedHandler(response, e.getMessage(), e);
+    }
+
+    static void setAccessDeniedHandler(HttpServletResponse response, String message, AccessDeniedException e) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control", "no-cache");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN));
+        response.getWriter().println(new ResponseEntity<>(message, HttpStatus.FORBIDDEN));
         response.getWriter().flush();
     }
 }

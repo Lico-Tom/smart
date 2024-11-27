@@ -1,20 +1,24 @@
 package com.smart.security.config;
 
-import com.smart.security.component.DynamicSecurityFilter;
-import com.smart.security.component.DynamicSecurityService;
 import com.smart.security.component.JwtAuthenticationTokenFilter;
 import com.smart.security.component.RestAuthenticationEntryPoint;
 import com.smart.security.component.RestfulAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -35,40 +39,33 @@ public class SmartSecurityConfig {
 
     private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
-    private final DynamicSecurityService dynamicSecurityService;
 
-    private final DynamicSecurityFilter dynamicSecurityFilter;
 
     public SmartSecurityConfig(@Autowired IgnoreUrlsConfig ignoreUrlsConfig,
                                @Autowired RestfulAccessDeniedHandler restfulAccessDeniedHandler,
                                @Autowired RestAuthenticationEntryPoint restAuthenticationEntryPoint,
-                               @Autowired JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter,
-                               @Autowired DynamicSecurityService dynamicSecurityService,
-                               @Autowired DynamicSecurityFilter dynamicSecurityFilter) {
+                               @Autowired JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter) {
         this.ignoreUrlsConfig = ignoreUrlsConfig;
         this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
         this.jwtAuthenticationTokenFilter = jwtAuthenticationTokenFilter;
-        this.dynamicSecurityService = dynamicSecurityService;
-        this.dynamicSecurityFilter = dynamicSecurityFilter;
     }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        HttpSecurity register = httpSecurity.authorizeHttpRequests(authorizeHttpRequest -> {
+        HttpSecurity http = httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeHttpRequest -> {
                     ignoreUrlsConfig.getUrls().forEach(url -> authorizeHttpRequest.requestMatchers(url).permitAll());
                     authorizeHttpRequest.anyRequest().authenticated();
                 })
-                .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(
+                        sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptionHand -> exceptionHand
                         .accessDeniedHandler(restfulAccessDeniedHandler)
                         .authenticationEntryPoint(restAuthenticationEntryPoint))
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        if (dynamicSecurityService != null) {
-            register.addFilterBefore(dynamicSecurityFilter, AuthorizationFilter.class);
-        }
-        return register.build();
+        return http.build();
     }
 
 }

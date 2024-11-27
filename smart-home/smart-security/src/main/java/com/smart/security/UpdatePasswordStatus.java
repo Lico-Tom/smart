@@ -1,5 +1,7 @@
 package com.smart.security;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Arrays;
  * 2023/12/3 17:17
  * @version V1.0
  */
+@Getter
 public enum UpdatePasswordStatus {
 
     /**
@@ -44,11 +47,4 @@ public enum UpdatePasswordStatus {
         return updatePasswordStatus.describe;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getDescribe() {
-        return describe;
-    }
 }

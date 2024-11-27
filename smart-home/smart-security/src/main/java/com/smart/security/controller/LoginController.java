@@ -82,6 +82,7 @@ public class LoginController {
         return new ResponseEntity<>(tokenMap, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @Operation(description = "获取当前登录用户信息")
     @GetMapping(value = "/info")
     public ResponseEntity<UserDto> getUserInfo(@RequestParam("token") String token) {

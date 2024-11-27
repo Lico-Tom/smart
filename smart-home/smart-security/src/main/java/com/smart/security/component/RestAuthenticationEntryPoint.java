@@ -22,12 +22,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Cache-Control","no-cache");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        response.getWriter().println(new ResponseEntity<>(authException.getMessage(), HttpStatus.FORBIDDEN));
-        response.getWriter().flush();
+                         AuthenticationException authException) throws IOException {
+        RestfulAccessDeniedHandler.setAccessDeniedHandler(response, authException.getMessage(), null);
     }
 }
