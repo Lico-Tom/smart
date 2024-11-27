@@ -8,7 +8,7 @@ const mqttRouter = {
   name: 'mqtt',
   meta: {
     title: i18n.t('common.mqtt'),
-    icon: 'nested'
+    icon: 'el-icon-cloudy'
   },
   children: [
     {

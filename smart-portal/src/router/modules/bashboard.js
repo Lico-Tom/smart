@@ -8,7 +8,7 @@ const dashboardRouter = {
   name: 'Home',
   meta: {
     title: 'dashboard',
-    icon: 'dashboard',
+    icon: 'el-icon-monitor',
     affix: true
   },
   children: [
