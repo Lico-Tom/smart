@@ -7,7 +7,7 @@ const userRouter = {
   name: 'users',
   meta: {
     title: i18n.t('common.user'),
-    icon: 'user'
+    icon: 'el-icon-user'
   },
   children: [
     {

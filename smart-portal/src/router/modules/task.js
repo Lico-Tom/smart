@@ -8,7 +8,7 @@ const taskRouter = {
   name: 'task',
   meta: {
     title: i18n.t('common.task'),
-    icon: 'nested'
+    icon: 'el-icon-tickets'
   },
   children: [
     {

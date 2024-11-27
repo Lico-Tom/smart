@@ -57,7 +57,7 @@ export const constantRoutes = [
       path: 'home',
       name: 'Home',
       component: () => import('@/views/home/index'),
-      meta: { title: i18n.t('common.home'), icon: 'dashboard' }
+      meta: { title: i18n.t('common.home'), icon: 'el-icon-s-home' }
     }]
   },
   userRouter,

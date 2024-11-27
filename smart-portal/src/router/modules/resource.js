@@ -8,7 +8,7 @@ const resourceRouter = {
   name: 'resource',
   meta: {
     title: i18n.t('common.resource'),
-    icon: 'nested'
+    icon: 'el-icon-suitcase'
   },
   children: [
     {
