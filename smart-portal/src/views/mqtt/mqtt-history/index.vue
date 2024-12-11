@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="fetchMqttHistory" :inline="true">
+    <el-form :model="fetchMqttHistory" :inline="true" size="small">
       <el-form-item label="订阅者的ip">
         <el-input v-model="fetchMqttHistory.subIp" />
       </el-form-item>
@@ -15,7 +15,7 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="fetchMqttHistories">
+    <el-table v-loading="listLoading" :data="fetchMqttHistories" size="small">
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="订阅者的ip" align="center" prop="subIp" />
       <el-table-column label="消费者的ip" align="center" prop="pubIp" />

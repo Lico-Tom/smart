@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="mqtt" :inline="true">
+    <el-form :model="mqtt" :inline="true" size="small">
       <el-form-item label="id">
         <el-input v-model="mqtt.id" />
       </el-form-item>
@@ -15,7 +15,7 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="mqtts">
+    <el-table v-loading="listLoading" :data="mqtts" size="small">
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="mqtt地址" align="center" prop="mqttAddr" />
       <el-table-column label="账号" align="center" prop="mqttUsername" />

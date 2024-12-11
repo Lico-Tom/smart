@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="mqttPub" :inline="true">
+    <el-form :model="mqttPub" :inline="true" size="small">
       <el-form-item label="mqtt的id">
         <el-input v-model="mqttPub.mqttId" />
       </el-form-item>
@@ -12,7 +12,7 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="mqttPubs">
+    <el-table v-loading="listLoading" :data="mqttPubs" size="small">
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="mqtt的id" align="center" prop="mqttId" />
       <el-table-column label="发布主题名" align="center" prop="mqttTopic" />

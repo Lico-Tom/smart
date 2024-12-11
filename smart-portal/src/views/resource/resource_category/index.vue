@@ -1,15 +1,15 @@
 <template>
   <div class="app-container">
     <el-form :model="resourceCategory" :inline="true">
-      <el-form-item label="资源分类ID">
-        <el-input v-model="resourceCategory.name" />
+      <el-form-item label="资源分类ID" size="small">
+        <el-input v-model="resourceCategory.name" size="small" />
       </el-form-item>
-      <el-form-item label="资源名称">
-        <el-input v-model="resourceCategory.sort" />
+      <el-form-item label="资源名称" size="small">
+        <el-input v-model="resourceCategory.sort" size="small" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSearch">查询</el-button>
-        <el-button @click="resetFields()">重置</el-button>
+        <el-button type="primary" size="small" @click="onSearch">查询</el-button>
+        <el-button size="small" @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
     <el-table v-loading="listLoading" :data="resourceCategorys">

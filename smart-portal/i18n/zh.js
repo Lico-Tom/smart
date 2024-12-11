@@ -6,7 +6,7 @@ export default {
     resource: '资源',
     mqtt: 'MQTT',
     task: '任务',
-    dashboard: '控制台'
+    dashboard: '监控平台'
   },
   login: {
     title: '系统登录',

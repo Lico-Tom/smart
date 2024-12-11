@@ -1,9 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="user" :inline="true">
-      <el-form-item label="id">
-        <el-input v-model="user.id" />
-      </el-form-item>
+    <el-form :model="user" :inline="true" size="small">
       <el-form-item label="用户名">
         <el-input v-model="user.username" />
       </el-form-item>
@@ -13,9 +10,6 @@
       <el-form-item label="昵称">
         <el-input v-model="user.nickName" />
       </el-form-item>
-      <el-form-item label="note">
-        <el-input v-model="user.note" />
-      </el-form-item>
       <el-form-item label="用户状态">
         <el-select v-model="user.status" value="正常" placeholder="用户状态">
           <el-option label="全部" :value="-1" />
@@ -23,12 +17,12 @@
           <el-option label="正常" :value="1" />
         </el-select>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSearch">查询</el-button>
-        <el-button @click="resetFields()">重置</el-button>
-      </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSearch">查询</el-button>
+          <el-button @click="resetFields()">重置</el-button>
+        </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="users">
+    <el-table v-loading="listLoading" :data="users" size="small">
       <el-table-column label="用户名" align="center" prop="username" />
       <el-table-column label="头像" align="center" prop="icon" />
       <el-table-column label="邮件" align="center" prop="email" />

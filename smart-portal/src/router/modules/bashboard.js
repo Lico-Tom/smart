@@ -9,7 +9,7 @@ const dashboardRouter = {
   meta: {
     title: 'dashboard',
     icon: 'el-icon-monitor',
-    affix: true
+    affix: false
   },
   children: [
     {

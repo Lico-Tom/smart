@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="resource" :inline="true">
+    <el-form :model="resource" :inline="true" size="small">
       <el-form-item label="资源分类ID">
         <el-input v-model="resource.categoryId" />
       </el-form-item>
@@ -15,20 +15,30 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="resources">
+    <el-table :data="resources" size="small">
       <el-table-column label="资源名称" align="center" prop="name" />
       <el-table-column label="资源URL" align="center" prop="url" />
       <el-table-column label="描述" align="center" prop="description" />
       <el-table-column label="资源分类ID" align="center" prop="categoryId" />
       <el-table-column label="创建时间" align="center" prop="createTime" />
       <el-table-column label="操作" fixed="right" prop="id">
-        <template property="resource">
-          <el-button type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+        <template slot-scope="scope">
+          <el-button type="text" @click="handleQueryClick(scope.row)">查看</el-button>
+          <el-button type="text" @click="handleEditClick(scope.row)">编辑</el-button>
         </template>
       </el-table-column>
-      <!--      <Popup :visible="popupVisible" :content="resource.id" @close="closePopup" />-->
     </el-table>
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+      <span>这是一段信息</span>
+      <span slot="footer" class="dialog-footer">
+         <el-button @click="dialogVisible = false">取 消</el-button>
+         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
     <div class="block">
       <el-pagination
         :current-page="pagination.currentPage"
@@ -49,6 +59,7 @@ import { fetchResources } from '@/api/resource/resource'
 export default {
   data() {
     return {
+      dialogVisible: false,
       listLoading: true,
       resources: null,
       resource: {
@@ -69,6 +80,14 @@ export default {
     this.getResources()
   },
   methods: {
+    handleQueryClick(row) {
+      this.dialogVisible = true
+      console.log(row)
+    },
+    handleEditClick(row) {
+      this.dialogVisible = true
+      console.log(row)
+    },
     getResources() {
       fetchResources(this.pagination.pageSize, this.pagination.currentPage, this.resource).then((response) => {
         this.resources = response.records

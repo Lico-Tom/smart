@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="task" :inline="true">
+    <el-form :model="task" :inline="true" size="small">
       <el-form-item label="id">
         <el-input v-model="task.id" />
       </el-form-item>
@@ -12,7 +12,7 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table v-loading="listLoading" :data="tasks">
+    <el-table v-loading="listLoading" :data="tasks" size="small">
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="任务名称" align="center" prop="taskName" />
       <el-table-column label="定时任务表达式" align="center" prop="cronExpression" />
