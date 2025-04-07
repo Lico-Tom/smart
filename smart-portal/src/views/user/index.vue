@@ -17,10 +17,15 @@
           <el-option label="正常" :value="1" />
         </el-select>
       </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSearch">查询</el-button>
-          <el-button @click="resetFields()">重置</el-button>
-        </el-form-item>
+      <el-form-item>
+        <ButtonGroup
+          :query-handle="handleQuery()"
+          :query-shown="true"
+          :reset-handle="resetFields"
+          :reset-shown="true"
+        />
+      </el-form-item>
+
     </el-form>
     <el-table v-loading="listLoading" :data="users" size="small">
       <el-table-column label="用户名" align="center" prop="username" />
@@ -39,6 +44,7 @@
       </el-table-column>
       <Popup :visible="popupVisible" :content="user.id" @close="closePopup" />
     </el-table>
+
     <div class="block">
       <el-pagination
         :current-page="pagination.currentPage"
@@ -56,15 +62,43 @@
 <script>
 import { fetchUsers } from '@/api/user'
 import Popup from '@/views/user/UserDialog'
-
+import ButtonGroup from '@/components/ButtonGroup/index'
 export default {
   components: {
-    Popup
+    Popup,
+    ButtonGroup
   },
   data() {
     return {
       users: null,
       listLoading: true,
+      buttonConfig: {
+        applicationButton: {
+          handle: this.handleApplication,
+          disabled: true,
+          isShow: false
+        },
+        editButton: {
+          handle: this.handleEdit,
+          disabled: false,
+          isShow: false
+        },
+        queryButton: {
+          handle: this.handleQuery,
+          disabled: false,
+          isShow: true
+        },
+        cancelButton: {
+          handle: this.handleCancel,
+          disabled: false,
+          isShow: false
+        },
+        resetButton: {
+          handle: this.handleReset,
+          disabled: false,
+          isShow: true
+        }
+      },
       user_status: {
         1: '在线',
         2: 'aa'
@@ -108,6 +142,16 @@ export default {
     },
     onSearch() {
       this.getUsers()
+    },
+    handleApplication() {
+    },
+    handleEdit() {
+    },
+    handleQuery() {
+    },
+    handleCancel() {
+    },
+    handleReset() {
     },
     resetFields() {
       this.user.id = ''

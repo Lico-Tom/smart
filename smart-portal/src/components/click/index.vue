@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ButtonGroup from '@/components/ButtonGoup/index.vue'
+import ButtonGroup from '@/components/ButtonGroup/index.vue'
 
 export default {
   name: 'ParentComponent',

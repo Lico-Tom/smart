@@ -15,12 +15,12 @@
         <el-button @click="resetFields()">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table :data="resources" size="small">
-      <el-table-column label="资源名称" align="center" prop="name" />
-      <el-table-column label="资源URL" align="center" prop="url" />
-      <el-table-column label="描述" align="center" prop="description" />
-      <el-table-column label="资源分类ID" align="center" prop="categoryId" />
-      <el-table-column label="创建时间" align="center" prop="createTime" />
+    <el-table :data="resources">
+      <el-table-column label="资源名称" prop="name" />
+      <el-table-column label="资源URL" prop="url" />
+      <el-table-column label="描述" prop="description" />
+      <el-table-column label="资源分类ID" prop="categoryId" />
+      <el-table-column label="创建时间" prop="createTime" />
       <el-table-column label="操作" fixed="right" prop="id">
         <template slot-scope="scope">
           <el-button type="text" @click="handleQueryClick(scope.row)">查看</el-button>

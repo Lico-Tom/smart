@@ -1,0 +1,5 @@
+/* global.css */
+.el-table .cell {
+  text-align: left; /* 将所有表格单元格的文字右对齐 */
+  font-size: small;
+}

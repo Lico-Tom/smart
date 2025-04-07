@@ -8,14 +8,18 @@
         <el-input v-model="resourceCategory.sort" size="small" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="small" @click="onSearch">查询</el-button>
-        <el-button size="small" @click="resetFields()">重置</el-button>
+        <ButtonGroup
+          :query-handle="onSearch()"
+          :query-shown="true"
+          :reset-handle="resetFields"
+          :reset-shown="true"
+        />
       </el-form-item>
     </el-form>
     <el-table v-loading="listLoading" :data="resourceCategorys">
-      <el-table-column label="资源名称" align="center" prop="name" />
-      <el-table-column label="资源URL" align="center" prop="sort" />
-      <el-table-column label="创建时间" align="center" prop="createTime" />
+      <el-table-column label="资源名称" align="left" prop="name" />
+      <el-table-column label="资源URL" align="left" prop="sort" />
+      <el-table-column label="创建时间" align="left" prop="createTime" />
       <el-table-column label="操作" fixed="right" prop="id">
         <template property="resource">
           <el-button type="text" size="small">查看</el-button>
@@ -40,8 +44,10 @@
 
 <script>
 import { fetchResourcesCategory } from '@/api/resource/resourceCategory'
+import ButtonGroup from '@/components/ButtonGroup/index.vue'
 
 export default {
+  components: { ButtonGroup },
   data() {
     return {
       listLoading: true,

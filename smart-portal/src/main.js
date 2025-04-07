@@ -42,3 +42,6 @@ new Vue({
   i18n,
   render: h => h(App)
 })
+
+// 添加全局样式
+import './assets/styles/global.css'
