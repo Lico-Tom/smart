@@ -1,4 +1,4 @@
-package com.smart.security.component;
+package com.smart.security.service;
 
 import org.springframework.security.access.ConfigAttribute;
 

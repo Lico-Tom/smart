@@ -36,7 +36,7 @@ import java.util.Map;
 @Validated
 @RestController
 @CrossOrigin
-@RequestMapping("/v1/smart/user")
+@RequestMapping(value = "/v1/smart/user", produces = "application/json")
 public class LoginController {
 
     @Value("${jwt.tokenHeader}")

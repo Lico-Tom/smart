@@ -21,12 +21,6 @@
 
         <dependency>
             <groupId>com.smart</groupId>
-            <artifactId>smart-system</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.smart</groupId>
             <artifactId>smart-task</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -34,12 +28,6 @@
         <dependency>
             <groupId>com.smart</groupId>
             <artifactId>smart-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.smart</groupId>
-            <artifactId>smart-batch</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -71,12 +59,6 @@
             <artifactId>smart-security</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>

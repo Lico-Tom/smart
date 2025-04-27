@@ -1,6 +1,5 @@
 package com.smart.mail.service.impl;
 
-import com.smart.mail.entity.Sender;
 import com.smart.mail.service.MailSendService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

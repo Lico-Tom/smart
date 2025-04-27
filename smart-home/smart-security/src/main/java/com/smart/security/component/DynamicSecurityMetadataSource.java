@@ -1,8 +1,8 @@
 package com.smart.security.component;
 
 import cn.hutool.core.util.URLUtil;
+import com.smart.security.service.DynamicSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;

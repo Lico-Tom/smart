@@ -1,13 +1,11 @@
 package com.smart.security.config;
 
-import com.smart.security.component.DynamicSecurityFilter;
-import com.smart.security.component.DynamicSecurityService;
-import com.smart.security.component.JwtAuthenticationTokenFilter;
-import com.smart.security.component.RestAuthenticationEntryPoint;
-import com.smart.security.component.RestfulAccessDeniedHandler;
+import com.smart.security.component.*;
+import com.smart.security.service.DynamicSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -57,7 +55,10 @@ public class SmartSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         HttpSecurity register = httpSecurity.authorizeHttpRequests(authorizeHttpRequest -> {
                     ignoreUrlsConfig.getUrls().forEach(url -> authorizeHttpRequest.requestMatchers(url).permitAll());
+                    authorizeHttpRequest.requestMatchers(HttpMethod.OPTIONS).permitAll();
+                    authorizeHttpRequest.requestMatchers(HttpMethod.POST, "/v1/smart/user/login").permitAll();
                     authorizeHttpRequest.anyRequest().authenticated();
+                   // authorizeHttpRequest.anyRequest().access(dynamicAuthorizationManager);
                 })
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

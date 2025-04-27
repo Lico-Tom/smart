@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -28,7 +29,8 @@ public class DaemonTask {
         this.scheduleTaskService = scheduleTaskService;
     }
 
-    @Scheduled(cron = "0/3 * * * * ?")
+    //@Scheduled(cron = "0/3 * * * * ?")
+    @PostConstruct
     private void initDaemonTask() {
         List<ScheduleTask> taskInfos = scheduleTaskService.list();
         taskInfos.forEach(taskSchedule::start);

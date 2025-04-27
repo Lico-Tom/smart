@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
-* @author lizhonghao
-* @description 针对表【t_schedule_task】的数据库操作Service实现
-* @createDate 2023-11-02 00:15:39
-*/
+ * @author lizhonghao
+ * @description 针对表【t_schedule_task】的数据库操作Service实现
+ * @createDate 2023-11-02 00:15:39
+ */
 @Service
 public class ScheduleTaskServiceImpl extends ServiceImpl<ScheduleTaskMapper, ScheduleTask>
-    implements ScheduleTaskService {
+        implements ScheduleTaskService {
 
     private final ScheduleTaskMapper scheduleMapper;
 

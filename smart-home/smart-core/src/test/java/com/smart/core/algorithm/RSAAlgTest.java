@@ -1,8 +1,8 @@
 package com.smart.core.algorithm;
 
-import com.smart.core.BaseTest;
 import com.smart.core.domain.Person;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +13,7 @@ import java.security.GeneralSecurityException;
  * 2024/4/23 0:29
  * @version V1.0
  */
-public class RSAAlgTest extends BaseTest {
+public class RSAAlgTest {
 
 
     @Test

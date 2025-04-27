@@ -16,15 +16,14 @@
 
     <modules>
         <module>smart-iot</module>
-        <module>smart-system</module>
         <module>smart-starter</module>
         <module>smart-task</module>
         <module>smart-core</module>
         <module>smart-mail</module>
-        <module>smart-batch</module>
         <module>smart-security</module>
         <module>smart-farm</module>
         <module>smart-mqtt</module>
+        <module>test-configuration</module>
     </modules>
 
     <properties>
@@ -189,6 +188,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
     </dependencies>
